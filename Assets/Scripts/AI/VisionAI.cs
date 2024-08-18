@@ -9,7 +9,7 @@ using UnityEngine.AI;
 using UnityEngine.UIElements;
 
 
-public class StalkerAI : MonoBehaviour
+public class VisionAI : MonoBehaviour
 {
     bool Roaming = false;
     bool Stalking = false;
@@ -19,6 +19,7 @@ public class StalkerAI : MonoBehaviour
     public float SensHeight = 0f;
     public Color SensColor = Color.red;
     public int ScanFrequency = 0;
+    [Header("Sensor Layers")]
     public LayerMask Layers;
     public LayerMask OcclusionLayer;
     public List<GameObject> Objects = new List<GameObject>();
