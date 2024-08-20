@@ -11,8 +11,8 @@ using UnityEngine.UIElements;
 
 public class VisionAI : MonoBehaviour
 {
-    bool Roaming = false;
-    bool Stalking = false;
+    public bool SeeingPlayer;
+    public GameObject PlayerBody;
     [Header("Sensor")]
     public float SensDistance = 0f;
     public float SensAngle = 0f;
@@ -41,6 +41,14 @@ public class VisionAI : MonoBehaviour
             ScanTimer += ScanInterval;
             Scan();
         }
+        if (Objects.Contains(PlayerBody))
+        {
+            SeeingPlayer = true;
+        }
+        else
+        {
+            SeeingPlayer = false;
+        }
     }
     private void Scan()
     {
@@ -61,7 +69,7 @@ public class VisionAI : MonoBehaviour
         Vector3 Origin = transform.position;
         Vector3 Destination = Obj.transform.position;
         Vector3 Direction = Destination - Origin;
-        if (Direction.y < 0 || Direction.y > SensHeight)
+        if (Direction.y < 0 - SensHeight / 2 || Direction.y > SensHeight)
         {
             return false;
         }
@@ -87,9 +95,9 @@ public class VisionAI : MonoBehaviour
         int NumVertices = NumTriangles * 3;
         Vector3[] Vertices = new Vector3[NumVertices];
         int[] Triangles = new int[NumVertices];
-        Vector3 BottomCenter = Vector3.zero;
-        Vector3 BottomLeft = Quaternion.Euler(0, -SensAngle, 0) * Vector3.forward * SensDistance;
-        Vector3 BottomRight = Quaternion.Euler(0, SensAngle, 0) * Vector3.forward * SensDistance;
+        Vector3 BottomCenter = Vector3.zero - new Vector3(0,SensHeight/2,0);
+        Vector3 BottomLeft = Quaternion.Euler(0, -SensAngle, 0) * Vector3.forward * SensDistance - new Vector3(0,SensHeight/2,0);
+        Vector3 BottomRight = Quaternion.Euler(0, SensAngle, 0) * Vector3.forward * SensDistance - new Vector3(0, SensHeight/2, 0);
         Vector3 TopCenter = BottomCenter + Vector3.up * SensHeight;
         Vector3 TopLeft = BottomLeft + Vector3.up * SensHeight;
         Vector3 TopRight = BottomRight + Vector3.up * SensHeight;
@@ -115,8 +123,8 @@ public class VisionAI : MonoBehaviour
         float DeltaAngle = (SensAngle * 2) / Segments;
         for (int i = 0; i < Segments; i++)
         {
-            BottomLeft = Quaternion.Euler(0, CurrentAngle, 0) * Vector3.forward * SensDistance;
-            BottomRight = Quaternion.Euler(0, CurrentAngle + DeltaAngle, 0) * Vector3.forward * SensDistance;
+            BottomLeft = Quaternion.Euler(0, CurrentAngle, 0) * Vector3.forward * SensDistance - new Vector3(0,SensHeight/2,0);
+            BottomRight = Quaternion.Euler(0, CurrentAngle + DeltaAngle, 0) * Vector3.forward * SensDistance - new Vector3(0,SensHeight/2,0);
             
             TopLeft = BottomLeft + Vector3.up * SensHeight;
             TopRight = BottomRight + Vector3.up * SensHeight;
