@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class StalkerAI : MonoBehaviour
 {
     VisionAI VisionAI;
     RoamAI RoamAI;
+
+    
     
     void Start()
     {
@@ -22,6 +25,6 @@ public class StalkerAI : MonoBehaviour
     }
     void Stalk()
     {
-
+        RoamAI.Roam();
     }
 }

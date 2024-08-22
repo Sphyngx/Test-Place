@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
+using static UnityEngine.UI.Image;
 
 
 public class VisionAI : MonoBehaviour
@@ -23,6 +24,10 @@ public class VisionAI : MonoBehaviour
     public LayerMask Layers;
     public LayerMask OcclusionLayer;
     public List<GameObject> Objects = new List<GameObject>();
+    Vector3 Origin;
+    Vector3 Destination;
+
+
 
     Collider[] Colliders = new Collider[50];
     Mesh SensMesh;
@@ -66,10 +71,10 @@ public class VisionAI : MonoBehaviour
     }
     public bool IsInsight(GameObject Obj)
     {
-        Vector3 Origin = transform.position;
-        Vector3 Destination = Obj.transform.position;
+        Origin = transform.position;
+        Destination = Obj.transform.position;
         Vector3 Direction = Destination - Origin;
-        if (Direction.y < 0 - SensHeight / 2 || Direction.y > SensHeight)
+        if (Direction.y < 0 - SensHeight / 2 || Direction.y > SensHeight / 2)
         {
             return false;
         }
@@ -79,8 +84,6 @@ public class VisionAI : MonoBehaviour
         {
             return false;
         }
-        Origin.y += SensHeight / 2;
-        Destination.y = Origin.y;
         if (Physics.Linecast(Origin, Destination,OcclusionLayer)) 
         {
             return false;
@@ -178,6 +181,12 @@ public class VisionAI : MonoBehaviour
         {
             Gizmos.DrawSphere(Obj.transform.position, 0.2f);
         }
+        Gizmos.color = Color.yellow;
+        foreach (var Obj in Objects)
+        {
+            Gizmos.DrawLine(Origin, Obj.transform.position);
+        }
+        
     }
 }
 

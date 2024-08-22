@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class RoamAI : MonoBehaviour
 {
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     public int range = 75;
     public float WaitTimer = 2f;
     private void Start()
@@ -25,7 +25,7 @@ public class RoamAI : MonoBehaviour
         return navHit.position;
     }
 
-    IEnumerator Roam()
+    public IEnumerator Roam()
     {
         bool Waiting = false;
         while (true)

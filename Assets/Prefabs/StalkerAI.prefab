@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8635096831314590188}
   - component: {fileID: 7076785756429245894}
   - component: {fileID: 7828706311705814664}
+  - component: {fileID: 8600283957036343469}
   - component: {fileID: 4915081234723436922}
   - component: {fileID: 4050717664588663529}
   - component: {fileID: 8100118104915864286}
@@ -72,6 +73,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8613da3cdaefa694196310780cf30df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SeeingPlayer: 0
+  PlayerBody: {fileID: 0}
   SensDistance: 10
   SensAngle: 45
   SensHeight: 3
@@ -84,6 +87,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   Objects: []
+--- !u!114 &8600283957036343469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8561876001483713715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03114a4d485a3c54d858afd43d0386d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &4915081234723436922
 MeshRenderer:
   m_ObjectHideFlags: 0
