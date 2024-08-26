@@ -187,6 +187,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 158442e79b1607946a960d40c18ecba8, type: 3}
+--- !u!195 &400956029 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 782796041631841578, guid: a4dbc8a8491d1b94caa6cb434cb333c4, type: 3}
+  m_PrefabInstance: {fileID: 303689702122478422}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &431497676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5264499281358075420, guid: c036cf9f55969a340872c66f40919347, type: 3}
@@ -765,6 +770,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 8600283957036343469, guid: a4dbc8a8491d1b94caa6cb434cb333c4, type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 400956029}
     - target: {fileID: 8972365624963032274, guid: a4dbc8a8491d1b94caa6cb434cb333c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.95
