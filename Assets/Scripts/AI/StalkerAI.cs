@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class StalkerAI : MonoBehaviour
 {
     public VisionAI VisionAI;
@@ -10,6 +9,7 @@ public class StalkerAI : MonoBehaviour
     public GameObject Player;
     public float Radius;
     public int Segments;
+    
 
     void Start()
     {
@@ -23,18 +23,44 @@ public class StalkerAI : MonoBehaviour
         {
             Stalk();
         }
+        else if (RoamAI != null)
+        {
+            RoamAI.IsStalking = false;
+        }
     }
 
     void Stalk()
     {
-        
+        if (RoamAI != null)
+        {
+            RoamAI.IsStalking = true;
+        }
         DrawCircle(Player.transform.position, Radius);
+        
     }
 
     void DrawCircle(Vector3 center, float radius)
     {
-        
+        float angleStep = 360f / Segments;
+        Vector3 prevPoint = center + new Vector3(Radius, 0, 0);
+        Vector3[] NewPoint = new Vector3[Segments];
+        for (int i = 1; i <= Segments; i++)
+        {
+            float angle = i * angleStep;
+            float rad = Mathf.Deg2Rad * angle;
+
+            NewPoint[i] = center + new Vector3(Mathf.Cos(rad) * Radius, 0, Mathf.Sin(rad) * Radius);
+
+            Physics.Linecast(prevPoint, NewPoint[i]);
+
+            prevPoint = NewPoint[i];
+        }
+        // create a random position on the linecast:
+        RoamAI.agent.ResetPath();
+        RoamAI.agent.SetDestination(NewPoint[Random.Range(0, NewPoint.Length)]);
+
     }
+
 
     private void OnDrawGizmos()
     {
