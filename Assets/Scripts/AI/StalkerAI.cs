@@ -9,7 +9,7 @@ public class StalkerAI : MonoBehaviour
     public GameObject Player;
     public float Radius;
     public int Segments;
-    
+
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class StalkerAI : MonoBehaviour
             RoamAI.IsStalking = true;
         }
         DrawCircle(Player.transform.position, Radius);
-        
+
     }
 
     void DrawCircle(Vector3 center, float radius)
@@ -49,7 +49,6 @@ public class StalkerAI : MonoBehaviour
             float angle = i * angleStep;
             float rad = Mathf.Deg2Rad * angle;
 
-
             NewPoint[i] = center + new Vector3(Mathf.Cos(rad) * Radius, 0, Mathf.Sin(rad) * Radius);
 
             Physics.Linecast(prevPoint, NewPoint[i]);
@@ -60,18 +59,18 @@ public class StalkerAI : MonoBehaviour
         RoamAI.agent.ResetPath();
         RoamAI.agent.SetDestination(NewPoint[Random.Range(0, NewPoint.Length)]);
 
-
+    }
 
 
     private void OnDrawGizmos()
     {
-        
+
         if (Player == null) return;
 
         Vector3 center = Player.transform.position;
 
-        float angleStep = 360f / Segments; 
-        Vector3 prevPoint = center + new Vector3(Radius, 0, 0); 
+        float angleStep = 360f / Segments;
+        Vector3 prevPoint = center + new Vector3(Radius, 0, 0);
 
         for (int i = 1; i <= Segments; i++)
         {
@@ -83,7 +82,7 @@ public class StalkerAI : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawLine(prevPoint, newPoint);
 
-            prevPoint = newPoint;  
+            prevPoint = newPoint;
         }
     }
 }

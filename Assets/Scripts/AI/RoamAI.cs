@@ -47,7 +47,7 @@ public class RoamAI : MonoBehaviour
                 }
                 yield return null;
             }
-            
+
         }
     }
 }

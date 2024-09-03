@@ -13,21 +13,8 @@ public class InputHandler : MonoBehaviour
     public bool CanCast;
     public bool IsCast;
     public bool FinishCast;
-    string Spellname;
-    [Header("Input Bools")]
-    public bool Input1;
-    public bool Input2;
-    public bool Input3;
-    public bool Input4;
-    public bool Input5;
-    [Header("Materials")]
-    public Material Default;
-    public Material StartCast;
-    public Material Casting;
-    public Material FinishedCast;
-
-
-
+    public string Inputs;
+    public int InputAmount;
     private void Start()
     {
         SpellHandler = GetComponent<SpellHandler>();
@@ -35,49 +22,161 @@ public class InputHandler : MonoBehaviour
     }
     void Update()
     {
+        FireSpell();
+        if (InputAmount >= 1 && !FinishCast)
+        {
+            InputTimer -= Time.deltaTime;
+        }
         //Start casting
         if (Input.GetKeyDown(KeyCode.E) && CanCast)
         {
-            Debug.Log("Started Cast");
-            PlayerBody.GetComponent<Renderer>().material = StartCast;
-            IsCast = true;
-            CanCast = false;
+            StartCastVoid();
         }
         //Cancel casting
-        if (Input.GetMouseButtonDown(1) && IsCast)
+        if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("Canceled Casting");
-            PlayerBody.GetComponent<Renderer>().material = Default;
-            IsCast = false;
-            CanCast = true;
+            CancelCastVoid();
         }
-        //Cast "Flare"
+        if (InputTimer <= 0)
+        {
+            CanCast = true;
+            IsCast = false;
+            FinishCast = false;
+            Inputs = null;
+            InputAmount = 0;
+            InputTimer = 1;
+}
+        //Cast "R"
         if (Input.GetKeyDown(KeyCode.R) && IsCast)
         {
-            Debug.Log("Casting a spell");
-            Input1 = true;
-            PlayerBody.GetComponent<Renderer>().material = Casting;
-            InputTimer -= Time.deltaTime;
-            
+            CastR();
         }
-        if (Input.GetKeyDown(KeyCode.F) && InputTimer > 0 && Input1 == true)
+        //Cast "T"
+        if (Input.GetKeyDown(KeyCode.T) && IsCast)
         {
-            Spellname = "Flare";
-            Debug.Log("Finished Casting:" + Spellname);
-            FinishCast = true;
-            PlayerBody.GetComponent<Renderer>().material = FinishedCast;
-                
-                
+            CastT();
         }
-        if (Input.GetMouseButtonDown(0) && FinishCast)
+        //Cast "Y"
+        if (Input.GetKeyDown(KeyCode.Y) && IsCast)
         {
-            InputTimer = 10;
-            Input1 = false;
-            IsCast = false;
+            CastY();
+        }
+        //Cast "F"
+        if (Input.GetKeyDown(KeyCode.F) && IsCast)
+        {
+            CastF();
+        }
+        //Cast "G"
+        if (Input.GetKeyDown(KeyCode.G) && IsCast)
+        {
+            CastG();
+        }
+        //Cast "H"
+        if (Input.GetKeyDown(KeyCode.H) && IsCast)
+        {
+            CastH();
+        }
+        //Cast "C"
+        if (Input.GetKeyDown(KeyCode.C) && IsCast)
+        {
+            CastC();
+        }
+        //Cast "V"
+        if (Input.GetKeyDown(KeyCode.V) && IsCast)
+        {
+            CastV();
+        }
+        //Cast "B"
+        if (Input.GetKeyDown(KeyCode.B) && IsCast)
+        {
+            CastB();
+        }
+    }
+    void StartCastVoid()
+    {
+        Debug.Log("Started Cast");
+        IsCast = true;
+        CanCast = false;
+        Inputs = null;
+        InputAmount = 0;
+        GameObject.Destroy(SpellHandler.FlareObject);
+    }
+    void CancelCastVoid()
+    {
+        Debug.Log("Canceled Casting");
+        GameObject.Destroy(SpellHandler.FlareObject);
+        CanCast = true;
+        IsCast = false;
+        FinishCast = false;
+        Inputs = null;
+        InputAmount = 0;
+        InputTimer = 1;
+    }
+    void CastR()
+    {
+        Debug.Log("Casting a spell");
+        Inputs += "R";
+        InputAmount = Inputs.Length;
+    }
+    void CastT()
+    {
+        Debug.Log("Casting a spell");
+        Inputs += "T";
+        InputAmount = Inputs.Length;
+    }
+    void CastY()
+    {
+        Debug.Log("Casting a spell");
+        Inputs += "Y";
+        InputAmount = Inputs.Length;
+    }
+    void CastF()
+    {
+        Debug.Log("Casting a spell");
+        Inputs += "F";
+        InputAmount = Inputs.Length;
+    }
+    void CastG()
+    {
+        Debug.Log("Casting a spell");
+        Inputs += "G";
+        InputAmount = Inputs.Length;
+    }
+    void CastH()
+    {
+        Debug.Log("Casting a spell");
+        Inputs += "H";
+        InputAmount = Inputs.Length;
+    }
+    void CastC()
+    {
+        Debug.Log("Casting a spell");
+        Inputs += "C";
+        InputAmount = Inputs.Length;
+    }
+    void CastV()
+    {
+        Debug.Log("Casting a spell");
+        Inputs += "V";
+        InputAmount = Inputs.Length;
+    }
+    void CastB()
+    {
+        Debug.Log("Casting a spell");
+        Inputs += "B";
+        InputAmount = Inputs.Length;
+    }
+     void FireSpell()
+    {
+        //Fire "Flare"
+        if (Inputs == "RF" && InputAmount == 2 && InputTimer >= 0 && Input.GetMouseButtonDown(0))
+        {
             CanCast = true;
-            FinishCast = false;
-            Debug.Log(Spellname + " was Cast");
-            PlayerBody.GetComponent<Renderer>().material = Default;
+            IsCast = false;
+            FinishCast = true;
+            Inputs = null;
+            InputAmount = 0;
+            InputTimer = 1;
             SpellHandler.Flare();
         }
     }
