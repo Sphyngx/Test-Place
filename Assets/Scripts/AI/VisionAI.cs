@@ -9,7 +9,6 @@ using UnityEngine.AI;
 using UnityEngine.UIElements;
 using static UnityEngine.UI.Image;
 
-[ExecuteInEditMode]
 public class VisionAI : MonoBehaviour
 {
     public bool SeeingPlayer;

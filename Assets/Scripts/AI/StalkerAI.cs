@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+
 public class StalkerAI : MonoBehaviour
 {
     public VisionAI VisionAI;
@@ -33,6 +33,23 @@ public class StalkerAI : MonoBehaviour
 
     void DrawCircle(Vector3 center, float radius)
     {
+        if (Player == null) return;
+
+        float angleStep = 360f / Segments;
+        Vector3 prevPoint = center + new Vector3(Radius, 0, 0);
+
+        for (int i = 1; i <= Segments; i++)
+        {
+            float angle = i * angleStep;
+            float rad = Mathf.Deg2Rad * angle;
+
+            Vector3 newPoint = center + new Vector3(Mathf.Cos(rad) * Radius, 0, Mathf.Sin(rad) * Radius);
+
+            Physics.Linecast(prevPoint, newPoint);
+           
+
+            prevPoint = newPoint;
+        }
         
     }
 
