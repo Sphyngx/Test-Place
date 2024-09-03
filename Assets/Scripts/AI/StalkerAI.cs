@@ -49,6 +49,7 @@ public class StalkerAI : MonoBehaviour
             float angle = i * angleStep;
             float rad = Mathf.Deg2Rad * angle;
 
+
             NewPoint[i] = center + new Vector3(Mathf.Cos(rad) * Radius, 0, Mathf.Sin(rad) * Radius);
 
             Physics.Linecast(prevPoint, NewPoint[i]);
@@ -59,7 +60,7 @@ public class StalkerAI : MonoBehaviour
         RoamAI.agent.ResetPath();
         RoamAI.agent.SetDestination(NewPoint[Random.Range(0, NewPoint.Length)]);
 
-    }
+
 
 
     private void OnDrawGizmos()
