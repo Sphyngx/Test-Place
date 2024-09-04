@@ -44,7 +44,7 @@ public class InputHandler : MonoBehaviour
             FinishCast = false;
             Inputs = null;
             InputAmount = 0;
-            InputTimer = 1;
+            InputTimer = 2;
 }
         //Cast "R"
         if (Input.GetKeyDown(KeyCode.R) && IsCast)
@@ -110,7 +110,7 @@ public class InputHandler : MonoBehaviour
         FinishCast = false;
         Inputs = null;
         InputAmount = 0;
-        InputTimer = 1;
+        InputTimer = 2;
     }
     void CastR()
     {
@@ -176,8 +176,18 @@ public class InputHandler : MonoBehaviour
             FinishCast = true;
             Inputs = null;
             InputAmount = 0;
-            InputTimer = 1;
+            InputTimer = 2;
             SpellHandler.Flare();
+        }
+        if (Inputs == "RTFF" && InputAmount == 4 && InputTimer >= 0 && Input.GetMouseButtonDown(0))
+        {
+            CanCast = true;
+            IsCast = false;
+            FinishCast = true;
+            Inputs = null;
+            InputAmount = 0;
+            InputTimer = 2;
+            SpellHandler.Fireball();
         }
     }
 }

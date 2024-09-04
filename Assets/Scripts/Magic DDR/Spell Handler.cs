@@ -10,15 +10,22 @@ public class SpellHandler : MonoBehaviour
     public GameObject FlarePrefab;
     public GameObject FlareObject;
     public GameObject FlarePos;
+    [Header("Fireball")]
+    public GameObject FireballPrefab;
     private void Start()
     {
         InputHandler = GetComponent<InputHandler>();
     }
     public void Flare()
     {
-        Instantiate(FlarePrefab);
-        FlareObject = GameObject.FindGameObjectWithTag("Flare");
+        FlareObject = Instantiate(FlarePrefab);
         FlareObject.transform.position = FlarePos.transform.position;
+        InputHandler.FinishCast = false;
+    }
+    public void Fireball()
+    {
+        GameObject FireballObject;
+        FireballObject = Instantiate(FireballPrefab);
         InputHandler.FinishCast = false;
     }
 }
