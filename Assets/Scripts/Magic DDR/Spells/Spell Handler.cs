@@ -31,8 +31,8 @@ public class SpellHandler : MonoBehaviour
         FireballObject = Instantiate(FireballPrefab);
         Rigidbody FireballRigidbody = FireballObject.GetComponent<Rigidbody>();
         FireballObject.transform.position = Player.transform.position + PlayerOrientationXZ.transform.forward + PlayerOrientationY.transform.forward;
-        FireballRigidbody.AddForce(PlayerOrientationXZ.transform.forward * 1,ForceMode.Impulse);
-        FireballRigidbody.AddForce(PlayerOrientationY.transform.forward * 10, ForceMode.Impulse);
+        FireballRigidbody.AddForce(PlayerOrientationXZ.transform.forward * 5,ForceMode.Impulse);
+        FireballRigidbody.AddForce(PlayerOrientationY.transform.forward * 5, ForceMode.Impulse);
         InputHandler.FinishCast = false;
     }
 }
