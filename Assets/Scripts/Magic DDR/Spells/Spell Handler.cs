@@ -6,6 +6,9 @@ using UnityEngine;
 public class SpellHandler : MonoBehaviour
 {
     InputHandler InputHandler;
+    public GameObject Player;
+    public GameObject PlayerOrientationXZ;
+    public GameObject PlayerOrientationY;
     [Header("Flare")]
     public GameObject FlarePrefab;
     public GameObject FlareObject;
@@ -26,6 +29,10 @@ public class SpellHandler : MonoBehaviour
     {
         GameObject FireballObject;
         FireballObject = Instantiate(FireballPrefab);
+        Rigidbody FireballRigidbody = FireballObject.GetComponent<Rigidbody>();
+        FireballObject.transform.position = Player.transform.position + PlayerOrientationXZ.transform.forward + PlayerOrientationY.transform.forward;
+        FireballRigidbody.AddForce(PlayerOrientationXZ.transform.forward * 1,ForceMode.Impulse);
+        FireballRigidbody.AddForce(PlayerOrientationY.transform.forward * 10, ForceMode.Impulse);
         InputHandler.FinishCast = false;
     }
 }
