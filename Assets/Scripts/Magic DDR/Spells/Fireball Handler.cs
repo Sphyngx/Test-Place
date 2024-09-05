@@ -18,7 +18,7 @@ public class FireballHandler : MonoBehaviour
             Rigidbody ObjectRigidbody = HitMovable[i].GetComponent<Rigidbody>();
             GameObject Object = HitMovable[i].GetComponent<GameObject>();
             Vector3 Direction = HitMovable[i].gameObject.transform.position - gameObject.transform.position;
-            ObjectRigidbody.AddForce(Direction * 2 + new Vector3(0,1), ForceMode.Impulse);
+            ObjectRigidbody.AddForce(Direction.normalized * 4 + new Vector3(0,2), ForceMode.Impulse);
         }
     }
 }
