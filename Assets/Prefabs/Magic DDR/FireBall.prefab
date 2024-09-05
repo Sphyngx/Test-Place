@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1918591809078385829}
+  - component: {fileID: 1643765387844707149}
   - component: {fileID: 919393336814759903}
   - component: {fileID: 8838303690499456996}
   - component: {fileID: 1141840876835761801}
   - component: {fileID: 1157474058820372198}
-  - component: {fileID: 1643765387844707149}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -36,6 +36,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1643765387844707149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278950215985851051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb21c2951e56c0479319f375b0ada60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Movable:
+    serializedVersion: 2
+    m_Bits: 128
+  Damagable:
+    serializedVersion: 2
+    m_Bits: 256
+  ExplotionSize: 5
 --- !u!33 &919393336814759903
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -134,15 +153,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1643765387844707149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5278950215985851051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cb21c2951e56c0479319f375b0ada60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

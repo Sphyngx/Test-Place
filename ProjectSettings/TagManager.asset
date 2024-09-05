@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InvestigateAI
   - InvestigateDestination
+  - Flare
   layers:
   - Default
   - TransparentFX
@@ -14,8 +15,8 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - 
+  - Movable
+  - Damagable
   - 
   - 
   - 
