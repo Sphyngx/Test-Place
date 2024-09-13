@@ -14,7 +14,7 @@ public class FireballHandler : MonoBehaviour
         //Knockback on Movable Objects
         Collider[] HitMovable = Physics.OverlapSphere(gameObject.transform.position, ExplotionSize, Movable);
         for (int i = 0; i < HitMovable.Length; i++)
-        {
+        {   
             Rigidbody ObjectRigidbody = HitMovable[i].GetComponent<Rigidbody>();
             GameObject Object = HitMovable[i].GetComponent<GameObject>();
             Vector3 Direction = HitMovable[i].gameObject.transform.position - gameObject.transform.position;

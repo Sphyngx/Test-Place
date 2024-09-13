@@ -114,55 +114,55 @@ public class InputHandler : MonoBehaviour
     }
     void CastR()
     {
-        Debug.Log("Casting a spell");
+        Debug.Log("R");
         Inputs += "R";
         InputAmount = Inputs.Length;
     }
     void CastT()
     {
-        Debug.Log("Casting a spell");
+        Debug.Log("T");
         Inputs += "T";
         InputAmount = Inputs.Length;
     }
     void CastY()
     {
-        Debug.Log("Casting a spell");
+        Debug.Log("Y");
         Inputs += "Y";
         InputAmount = Inputs.Length;
     }
     void CastF()
     {
-        Debug.Log("Casting a spell");
+        Debug.Log("F");
         Inputs += "F";
         InputAmount = Inputs.Length;
     }
     void CastG()
     {
-        Debug.Log("Casting a spell");
+        Debug.Log("G");
         Inputs += "G";
         InputAmount = Inputs.Length;
     }
     void CastH()
     {
-        Debug.Log("Casting a spell");
+        Debug.Log("H");
         Inputs += "H";
         InputAmount = Inputs.Length;
     }
     void CastC()
     {
-        Debug.Log("Casting a spell");
+        Debug.Log("C");
         Inputs += "C";
         InputAmount = Inputs.Length;
     }
     void CastV()
     {
-        Debug.Log("Casting a spell");
+        Debug.Log("V");
         Inputs += "V";
         InputAmount = Inputs.Length;
     }
     void CastB()
     {
-        Debug.Log("Casting a spell");
+        Debug.Log("B");
         Inputs += "B";
         InputAmount = Inputs.Length;
     }
@@ -188,6 +188,16 @@ public class InputHandler : MonoBehaviour
             InputAmount = 0;
             InputTimer = 2;
             SpellHandler.Fireball();
+        }
+        if (Inputs == "BBFVVGGT" && InputAmount == 8 && InputTimer >= 0 && Input.GetMouseButtonDown(0))
+        {
+            CanCast = true;
+            IsCast = false;
+            FinishCast = true;
+            Inputs = null;
+            InputAmount = 0;
+            InputTimer = 2;
+            SpellHandler.HollowPurple();
         }
     }
 }

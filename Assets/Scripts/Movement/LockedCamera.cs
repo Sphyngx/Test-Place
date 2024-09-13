@@ -12,8 +12,7 @@ public class LockedCamera : MonoBehaviour
     int Sensetivity = 100;
     float MouseX = 0;
     float MouseY = 0;
-    public GameObject OrientationXZ = null;
-    public GameObject OrientationY = null;
+    public GameObject OrientationXY = null;
     void Update()
     {
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
@@ -26,7 +25,6 @@ public class LockedCamera : MonoBehaviour
     void CameraRot()
     {
         transform.rotation = Quaternion.Euler(MouseY, MouseX, 0);
-        OrientationXZ.transform.rotation = Quaternion.Euler(0, MouseX, 0);
-        OrientationY.transform.rotation = Quaternion.Euler(MouseY, MouseX, 0);
+        OrientationXY.transform.rotation = Quaternion.Euler(MouseY, MouseX, 0);
     }
 }
