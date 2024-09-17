@@ -15,6 +15,12 @@ public class InputHandler : MonoBehaviour
     public bool FinishCast;
     public string Inputs;
     public int InputAmount;
+    [Header("Flare")]
+    public bool FlareRune;
+    [Header("Fireball")]
+    public bool FireballRune;
+    [Header("HollowPurple")]
+    public bool HollowpurpleRune;
     private void Start()
     {
         SpellHandler = GetComponent<SpellHandler>();
@@ -22,7 +28,8 @@ public class InputHandler : MonoBehaviour
     }
     void Update()
     {
-        FireSpell();
+        SpellRune();
+        ModifierRune();
         if (InputAmount >= 1 && !FinishCast)
         {
             InputTimer -= Time.deltaTime;
@@ -166,38 +173,40 @@ public class InputHandler : MonoBehaviour
         Inputs += "B";
         InputAmount = Inputs.Length;
     }
-     void FireSpell()
+     void SpellRune()
     {
         //Fire "Flare"
-        if (Inputs == "RF" && InputAmount == 2 && InputTimer >= 0 && Input.GetMouseButtonDown(0))
+        if (Inputs == "RFF" && InputAmount == 2 && InputTimer >= 0 && Input.GetMouseButtonDown(0))
         {
+            FlareRune = true;
             CanCast = true;
             IsCast = false;
-            FinishCast = true;
             Inputs = null;
             InputAmount = 0;
             InputTimer = 2;
-            SpellHandler.Flare();
+            
         }
-        if (Inputs == "RTFF" && InputAmount == 4 && InputTimer >= 0 && Input.GetMouseButtonDown(0))
-        {
-            CanCast = true;
-            IsCast = false;
-            FinishCast = true;
-            Inputs = null;
-            InputAmount = 0;
-            InputTimer = 2;
-            SpellHandler.Fireball();
-        }
+        //Fire "Hollowpurple"
         if (Inputs == "BBFVVGGT" && InputAmount == 8 && InputTimer >= 0 && Input.GetMouseButtonDown(0))
         {
+            HollowpurpleRune = true;
             CanCast = true;
             IsCast = false;
-            FinishCast = true;
             Inputs = null;
             InputAmount = 0;
             InputTimer = 2;
-            SpellHandler.HollowPurple();
+            
         }
+    }
+    void ModifierRune()
+    {
+        if (FlareRune == true && Inputs == "TTF")
+        {
+
+        }
+    }
+    void FireSpell()
+    {
+
     }
 }
