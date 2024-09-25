@@ -16,7 +16,7 @@ TagManager:
   - UI
   - Player
   - Movable
-  - Damagable
+  - Destructable
   - 
   - 
   - 

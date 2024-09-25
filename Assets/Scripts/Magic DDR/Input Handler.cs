@@ -176,37 +176,53 @@ public class InputHandler : MonoBehaviour
      void SpellRune()
     {
         //Fire "Flare"
-        if (Inputs == "RFF" && InputAmount == 2 && InputTimer >= 0 && Input.GetMouseButtonDown(0))
+        if (Inputs == "RFF" && InputTimer >= 0 && Input.GetMouseButtonDown(0))
         {
             FlareRune = true;
-            CanCast = true;
-            IsCast = false;
-            Inputs = null;
-            InputAmount = 0;
-            InputTimer = 2;
-            
+            ResetBools();
+            FireSpell();
+
         }
         //Fire "Hollowpurple"
-        if (Inputs == "BBFVVGGT" && InputAmount == 8 && InputTimer >= 0 && Input.GetMouseButtonDown(0))
+        if (Inputs == "BBFVVGGT" && InputTimer >= 0 && Input.GetMouseButtonDown(0))
         {
             HollowpurpleRune = true;
-            CanCast = true;
-            IsCast = false;
-            Inputs = null;
-            InputAmount = 0;
-            InputTimer = 2;
-            
+            ResetBools();
+            FireSpell();
         }
     }
     void ModifierRune()
     {
-        if (FlareRune == true && Inputs == "TTF")
+        if (FlareRune == true && Inputs == "TTF" && Input.GetMouseButtonDown(0))
         {
-
+            FireballRune = true;
+            ResetBools();
         }
     }
     void FireSpell()
     {
-
+        if (FlareRune && Input.GetMouseButtonDown(0))
+        {
+            SpellHandler.Flare();
+            ResetRunes();  
+        }
+        if (FireballRune && Input.GetMouseButton(0))
+        {
+            SpellHandler.Fireball();
+            ResetRunes();
+        }
+    }
+    void ResetBools()
+    {
+        CanCast = true;
+        IsCast = false;
+        Inputs = null;
+        InputAmount = 0;
+        InputTimer = 2;
+    }
+    void ResetRunes()
+    {
+        FlareRune = false;
+        FireballRune = false;
     }
 }
