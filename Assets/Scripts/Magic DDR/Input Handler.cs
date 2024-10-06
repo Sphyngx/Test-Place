@@ -30,6 +30,7 @@ public class InputHandler : MonoBehaviour
     {
         SpellRune();
         ModifierRune();
+        FireSpell();
         if (InputAmount >= 1 && !FinishCast)
         {
             InputTimer -= Time.deltaTime;
@@ -179,8 +180,9 @@ public class InputHandler : MonoBehaviour
         if (Inputs == "RFF" && InputTimer >= 0 && Input.GetMouseButtonDown(0))
         {
             FlareRune = true;
+            SpellHandler.Fireball();
             ResetBools();
-            FireSpell();
+            ResetRunes();   
 
         }
         //Fire "Hollowpurple"
@@ -188,7 +190,6 @@ public class InputHandler : MonoBehaviour
         {
             HollowpurpleRune = true;
             ResetBools();
-            FireSpell();
         }
     }
     void ModifierRune()
