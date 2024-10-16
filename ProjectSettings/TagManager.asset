@@ -8,6 +8,7 @@ TagManager:
   - InvestigateDestination
   - Flare
   - Attack
+  - CubeGen
   layers:
   - Default
   - TransparentFX

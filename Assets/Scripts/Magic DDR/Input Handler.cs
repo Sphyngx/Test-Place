@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,12 +16,14 @@ public class InputHandler : MonoBehaviour
     public bool FinishCast;
     public string Inputs;
     public int InputAmount;
+    public int RuneAmount;
+    public string[] Runes = new string[5];
     [Header("Flare")]
-    public bool FlareRune;
+    string FlareRune = "FlareRune";
     [Header("Fireball")]
-    public bool FireballRune;
+    string FireballRune = "FireballRune";
     [Header("HollowPurple")]
-    public bool HollowpurpleRune;
+    string HollowPurpleRune = "HollowPurpleRune";
     private void Start()
     {
         SpellHandler = GetComponent<SpellHandler>();
@@ -105,6 +108,7 @@ public class InputHandler : MonoBehaviour
         Debug.Log("Started Cast");
         IsCast = true;
         CanCast = false;
+        FinishCast = false;
         Inputs = null;
         InputAmount = 0;
         GameObject.Destroy(SpellHandler.FlareObject);
@@ -177,53 +181,46 @@ public class InputHandler : MonoBehaviour
      void SpellRune()
     {
         //Fire "Flare"
-        if (Inputs == "RFF" && InputTimer >= 0 && Input.GetMouseButtonDown(0))
+        if (Inputs == "RFF" && InputTimer >= 0 && Input.GetMouseButtonDown(0) && !FinishCast)
         {
-            FlareRune = true;
-            SpellHandler.Fireball();
-            ResetBools();
-            ResetRunes();   
-
+            RuneAmount++;
+            Runes[RuneAmount] += FlareRune;
+            FinishCast = true;
+            Debug.Log("Finished cast");
         }
         //Fire "Hollowpurple"
         if (Inputs == "BBFVVGGT" && InputTimer >= 0 && Input.GetMouseButtonDown(0))
         {
-            HollowpurpleRune = true;
-            ResetBools();
+            RuneAmount++;
+            Runes[RuneAmount] += HollowPurpleRune;
         }
     }
     void ModifierRune()
     {
-        if (FlareRune == true && Inputs == "TTF" && Input.GetMouseButtonDown(0))
+        //Fireball
+        if (Runes[RuneAmount].Contains(FlareRune) && Inputs == "TTF" && Input.GetMouseButtonDown(0))
         {
-            FireballRune = true;
-            ResetBools();
+            RuneAmount++;
+            Runes[RuneAmount] += FireballRune;
         }
     }
     void FireSpell()
     {
-        if (FlareRune && Input.GetMouseButtonDown(0))
+        //Flare
+        if (Runes[RuneAmount].Contains(FlareRune) && Input.GetMouseButtonDown(0) && FinishCast)
         {
             SpellHandler.Flare();
             ResetRunes();  
         }
-        if (FireballRune && Input.GetMouseButton(0))
+        //Fireball
+        if (Runes[RuneAmount].Contains(FireballRune) && Input.GetMouseButton(0))
         {
             SpellHandler.Fireball();
             ResetRunes();
         }
     }
-    void ResetBools()
-    {
-        CanCast = true;
-        IsCast = false;
-        Inputs = null;
-        InputAmount = 0;
-        InputTimer = 2;
-    }
     void ResetRunes()
     {
-        FlareRune = false;
-        FireballRune = false;
+        
     }
 }
