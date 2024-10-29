@@ -14,50 +14,46 @@ public class CubeGenerator : MonoBehaviour
     {
         Cube BaseCube = new Cube();
         CubeGen = GameObject.FindGameObjectWithTag("CubeGen");
+
+        SpawnCubes();
+    }
+
+    void SpawnCubes()
+    {
+        for (int ix = 0; ix < CubeGen.transform.localScale.x; ix++)
+        {
+            for (int iy = 0; iy < CubeGen.transform.localScale.y; iy++)
+            {
+                for (int iz = 0; iz < CubeGen.transform.localScale.z; iz++)
+                {
+                    if (CubeGen.transform.localScale.y % 1 == 0)
+                    {
+
+                        Instantiate<GameObject>(Testcube, new Vector3(ix, iy, iz), new Quaternion(0, 0, 0, 0));
+                    }
+                }
+                
+            }
+        }
     }
 
     void Update()
     {
-        for (;X < CubeGen.transform.localScale.x;X++)
+        
+
+        if(X != (int)CubeGen.transform.localScale.x)
         {
-            Debug.Log("this is X:" + X);
-            if (CubeGen.transform.localScale.x % 1 == 0)
-            {
-                Instantiate<GameObject>(Testcube, new Vector3(X, 0, 0), new Quaternion(0, 0, 0, 0));
-            }
-            else
-            {
-                break;
-            }
+            X = (int)CubeGen.transform.localScale.x;
         }
-        for (;Y < CubeGen.transform.localScale.y; Y++)
+        if(Y != (int)CubeGen.transform.localScale.y)
         {
-            Debug.Log("this is Y:" + Y);
-            if (CubeGen.transform.localScale.y % 1 == 0)
-            {
-                
-                Instantiate<GameObject>(Testcube, new Vector3(0, Y, 0), new Quaternion(0, 0, 0, 0));
-            }
-            else
-            {
-                break;
-            }
+            Y = (int)CubeGen.transform.localScale.y;
         }
-        for (;Z < CubeGen.transform.localScale.z; Z++)
-        {
-            Debug.Log("this is Z:" + Z);
-            if (CubeGen.transform.localScale.z % 1 == 0)
-            {
-                Instantiate<GameObject>(Testcube, new Vector3(0, 0, Z), new Quaternion(0, 0, 0, 0));
-            }
-            else
-            {
-                break;
-            }
-        }
-
-
-
-
+        
+    }
+    void VectorXZ(Vector3 StartCollumn)
+    {
+        Instantiate<GameObject>(Testcube, StartCollumn, new Quaternion(0, 0, 0, 0));
+        
     }
 }
