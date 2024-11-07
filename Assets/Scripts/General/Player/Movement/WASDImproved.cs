@@ -5,7 +5,7 @@ using UnityEngine;
 public class WASDImproved : MonoBehaviour
 {
     public float MoveSpeed = 0;
-    public GameObject OrientationXZ;
+    public GameObject OrientationY;
     Rigidbody Rigidbody;
     float HorizontalInput;
     float VerticalInput;
@@ -31,8 +31,8 @@ public class WASDImproved : MonoBehaviour
     }
     void Move()
     {
-        Vector3 Forward = OrientationXZ.transform.forward * VerticalInput + OrientationXZ.transform.right * HorizontalInput;
-        Rigidbody.AddForce(Forward.normalized * MoveSpeed, ForceMode.Force);
+        Vector3 Forward = OrientationY.transform.forward * VerticalInput + OrientationY.transform.right * HorizontalInput;
+        Rigidbody.AddForce(Forward.normalized * MoveSpeed, ForceMode.Impulse);
     }
 }
 
