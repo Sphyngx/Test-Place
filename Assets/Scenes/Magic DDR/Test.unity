@@ -2530,9 +2530,14 @@ MonoBehaviour:
   FinishCast: 0
   Inputs: 
   InputAmount: 0
-  FlareRune: 0
-  FireballRune: 0
-  HollowpurpleRune: 0
+  RuneAmount: 0
+  Runes:
+  - 
+  - 
+  - 
+  - 
+  - 
+  spellKeys: 720000007400000066000000670000006300000076000000
 --- !u!114 &636560323
 MonoBehaviour:
   m_ObjectHideFlags: 0
