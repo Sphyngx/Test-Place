@@ -5,21 +5,21 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 using UnityEditor;
 
 public class InputHandler : MonoBehaviour
 {
     SpellHandler SpellHandler;
-    public GameObject PlayerBody;
+    public GameObject PlayerModel;
     [Header("Cast Stages")]
+    public float InputTime;
     public float InputTimer;
     public bool CanCast;
     public bool IsCast;
     public bool FinishCast;
     public string Inputs;
-    public int InputAmount;
-    public int RuneAmount;
+    int InputAmount;
+    int RuneAmount;
     string BrokenRune = "BrokenRune";
     public string[] Runes = new string[6];
     [Header("Flare")]
@@ -68,12 +68,9 @@ public class InputHandler : MonoBehaviour
         }
         if (InputTimer <= 0)
         {
-            CanCast = true;
-            IsCast = false;
-            FinishCast = false;
-            Inputs = null;
-            InputAmount = 0;
-            InputTimer = 2;
+            Runes[RuneAmount] += BrokenRune;
+            RuneAmount++;
+            ResetBools(false);
         }
 
         foreach(KeyCode key in spellKeys)
@@ -105,7 +102,7 @@ public class InputHandler : MonoBehaviour
         RuneAmount = 0;
         Array.Clear(Runes, 0, Runes.Length);
         InputAmount = 0;
-        InputTimer = 2;
+        InputTimer = InputTime;
     }
     void SpellRune()
     {
@@ -196,7 +193,7 @@ public class InputHandler : MonoBehaviour
         FinishCast = true;
         Inputs = null;
         InputAmount = 0;
-        InputTimer = 2;
+        InputTimer = InputTime;
         Runes[RuneAmount] += BrokenRune;
         RuneAmount++;
     }
@@ -215,7 +212,7 @@ public class InputHandler : MonoBehaviour
                 Runes[i] = string.Empty;
             }
             InputAmount = 0;
-            InputTimer = 2;
+            InputTimer = InputTime;
             return;
         }
         else
@@ -226,7 +223,7 @@ public class InputHandler : MonoBehaviour
             FinishCast = true;
             Inputs = null;        
             InputAmount = 0;
-            InputTimer = 2;
+            InputTimer = InputTime;
         }
     }
 }
