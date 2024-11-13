@@ -7,7 +7,8 @@ public class SpellHandler : MonoBehaviour
 {
     InputHandler InputHandler;
     public GameObject Player;
-    public GameObject PlayerOrientationXY;
+    public GameObject PlayerOrientationX;
+    public GameObject PlayerOrientationY;
     [Header("Flare")]
     public GameObject FlarePrefab;
     public GameObject FlareObject;
@@ -31,16 +32,16 @@ public class SpellHandler : MonoBehaviour
         GameObject FireballObject;
         FireballObject = Instantiate(FireballPrefab);
         Rigidbody FireballRigidbody = FireballObject.GetComponent<Rigidbody>();
-        FireballObject.transform.position = Player.transform.position + PlayerOrientationXY.transform.forward;
-        FireballRigidbody.AddForce(PlayerOrientationXY.transform.forward * 5,ForceMode.Impulse);
+        FireballObject.transform.position = Player.transform.position + PlayerOrientationX.transform.forward + PlayerOrientationY.transform.forward;
+        FireballRigidbody.AddForce(PlayerOrientationX.transform.forward + PlayerOrientationY.transform.forward * 5,ForceMode.Impulse);
         InputHandler.FinishCast = false;
     }
     public void HollowPurple()
     {
         GameObject HollowPurpleObject;
         HollowPurpleObject = Instantiate(HollowPurplaPrefab);
-        HollowPurpleObject.transform.position = Player.transform.position + PlayerOrientationXY.transform.forward;
+        HollowPurpleObject.transform.position = Player.transform.position + PlayerOrientationX.transform.forward + PlayerOrientationY.transform.forward;
         Rigidbody HollowPurpleRigidbody = HollowPurpleObject.GetComponent<Rigidbody>();
-        HollowPurpleRigidbody.AddForce(PlayerOrientationXY.transform.forward * 3, ForceMode.Impulse);
+        HollowPurpleRigidbody.AddForce(PlayerOrientationX.transform.forward + PlayerOrientationY.transform.forward * 3, ForceMode.Impulse);
     }
 }
