@@ -55,6 +55,7 @@ public class InputHandler : MonoBehaviour
         //Finish casting
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("Mouse1");
             if (!FinishCast && IsCast)
             {
                 SpellRune();
@@ -72,7 +73,7 @@ public class InputHandler : MonoBehaviour
             FinishCast = false;
             Inputs = null;
             InputAmount = 0;
-            InputTimer = 100;
+            InputTimer = 2;
         }
 
         foreach(KeyCode key in spellKeys)
@@ -104,13 +105,12 @@ public class InputHandler : MonoBehaviour
         RuneAmount = 0;
         Array.Clear(Runes, 0, Runes.Length);
         InputAmount = 0;
-        InputTimer = 100;
+        InputTimer = 2;
     }
     void SpellRune()
     {
         for (int i = 0; Runes.Length > i; i++)
         {
-            Debug.Log("Spellrune i: " + i);
             if (string.IsNullOrEmpty(Runes[i]))
             {
                 Debug.Log("Spellrune");
@@ -120,38 +120,27 @@ public class InputHandler : MonoBehaviour
                     Debug.Log("Flare Rune");
                     Runes[RuneAmount] += FlareRune;
                     RuneAmount++;
-                    CanCast = true;
-                    IsCast = false;
-                    FinishCast = true;
-                    return;
+                    ResetBools(false);
+                    break;
                 }
                 //Fire "Hollowpurple"
                 if (Inputs == "BBFVVGGT" && InputTimer >= 0 && Input.GetMouseButtonDown(0))
                 {
-                    RuneAmount++;
-                    Runes[RuneAmount] += HollowPurpleRune;
+                    ResetBools(false);
+                    break;
                 }
-
-                Debug.Log("The rune was Broken");
-
-                CanCast = true;
-                IsCast = false;
-                FinishCast = true;
-                Inputs = null;
-                InputAmount = 0;
-                InputTimer = 100;
-                Runes[RuneAmount] += BrokenRune;
-                RuneAmount++;
-                return;
+                BreakRune();
             }
+            break;
         }
     }
     void ModifierRune()
     {
+        
         for (int i = 0; Runes.Length > i; i++)
         {
-            Debug.Log("ModifierRune i: " + i);
-            if (!Runes[i].Contains(string.Empty))
+            Debug.Log("Runes " +Runes[i]);
+            if (!Runes[i].Contains("Runes"))
             {
                 Debug.Log("ModifierRune");
                 //Fireball
@@ -160,22 +149,12 @@ public class InputHandler : MonoBehaviour
                     Debug.Log("Fireball rune");
                     Runes[RuneAmount] += FireballRune;
                     RuneAmount++;
-                    CanCast = true;
-                    IsCast = false;
-                    FinishCast = true;
-                    return;
+                    ResetBools(false);
+                    break;
                 }
-                Debug.Log("The rune was Broken");
-                CanCast = true;
-                IsCast = false;
-                FinishCast = true;
-                Inputs = null;
-                InputAmount = 0;
-                InputTimer = 100;
-                Runes[RuneAmount] += BrokenRune;
-                RuneAmount++;
-                return;
+                break;
             }
+            BreakRune();
         }
         
     }
@@ -183,40 +162,71 @@ public class InputHandler : MonoBehaviour
     {
         for (int i = 0; Runes.Length > i; i++)
         {
-            Debug.Log("FireSpell i: " + i);
-            if (Runes[i].Contains(BrokenRune))
+            if (!Runes[i].Contains(BrokenRune))
             {
                 Debug.Log("FireSpell");
                 //Flare
                 if (Runes.Any(s => s.Contains(FlareRune)))
                 {
-                    SpellHandler.Flare();
-                    return;
+                    //Fireball
+                    if (Runes.Any(s => s.Contains(FireballRune)))
+                    {
+                        Debug.Log("FireBall");
+                        SpellHandler.Fireball();
+                        ResetBools(true);
+                    }
+                    else
+                    {
+                        Debug.Log("Flare");
+                        SpellHandler.Flare();
+                        ResetBools(true);
+                    }
                 }
-                //Fireball
-                if (Runes.Any(s => s.Contains(FireballRune)))
-                {
-                    SpellHandler.Fireball();
-                    return;
-                }
-                ResetBools();
+                ResetBools(true);
             }
+            break;
         }
-        ResetBools();
+        ResetBools(true);
     }
-    void ResetBools()
+    void BreakRune()
     {
-        Debug.Log("ResetBools");
+        Debug.Log("The rune was Broken");
         CanCast = true;
         IsCast = false;
-        FinishCast = false;
+        FinishCast = true;
         Inputs = null;
-        RuneAmount = 0;
-        for (int i = 0; Runes.Length > i; i++)
-        {
-            Runes[i] = string.Empty;
-        }
         InputAmount = 0;
-        InputTimer = 100;
+        InputTimer = 2;
+        Runes[RuneAmount] += BrokenRune;
+        RuneAmount++;
+    }
+    void ResetBools(bool Fullreset)
+    {
+        if (Fullreset)
+        {
+            Debug.Log("ResetBools");
+            CanCast = true;
+            IsCast = false;
+            FinishCast = false;
+            Inputs = null;
+            RuneAmount = 0;
+            for (int i = 0; Runes.Length > i; i++)
+            {
+                Runes[i] = string.Empty;
+            }
+            InputAmount = 0;
+            InputTimer = 2;
+            return;
+        }
+        else
+        {
+            Debug.Log("ResetBools");
+            CanCast = true;
+            IsCast = false;
+            FinishCast = true;
+            Inputs = null;        
+            InputAmount = 0;
+            InputTimer = 2;
+        }
     }
 }
