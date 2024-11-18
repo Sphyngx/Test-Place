@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using Assets.Classes;
 
 public class InputHandler : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class InputHandler : MonoBehaviour
     int RuneAmount;
     string BrokenRune = "BrokenRune";
     public string[] Runes = new string[6];
+    public string[] SpellNames = new string[0];
+    public string[] SpellInputs = new string[0];
     [Header("Flare")]
     string FlareRune = "FlareRune";
     [Header("Fireball")]
@@ -34,6 +37,11 @@ public class InputHandler : MonoBehaviour
     private void Start()
     {
         SpellHandler = GetComponent<SpellHandler>();
+        for (int i = 0; i < SpellInputs.Length; i++)
+        {
+            Spells spells = new Spells(SpellNames[i], SpellInputs[i]);
+        }
+        
         CanCast = true;
     }
     void Update()
@@ -47,23 +55,41 @@ public class InputHandler : MonoBehaviour
         {
             StartCastVoid();
         }
-        //Cancel casting
-        if (Input.GetMouseButtonDown(1))
-        {
-            CancelCastVoid();
-        }
-        //Finish casting
+        //Mouse 1
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Mouse1");
+            if (!FinishCast && !IsCast)
+            {
+                //Melee
+            }
             if (!FinishCast && IsCast)
             {
+                //Create Rune
                 SpellRune();
                 ModifierRune();
             }
             else if (FinishCast)
             {
+                //Fire Spell
                 FireSpell();
+            }
+        }
+        //Mouse 2
+        if (Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("Mouse2");
+            if (!FinishCast &&  !IsCast)
+            {
+                //Parry
+            }
+            else if (FinishCast || IsCast)
+            {
+                CancelCastVoid();
+            }
+            else
+            {
+                Debug.Log("Mouse 2 was null");
             }
         }
         if (InputTimer <= 0)

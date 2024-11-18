@@ -680,7 +680,7 @@ Transform:
   m_GameObject: {fileID: 94868342}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -4}
+  m_LocalPosition: {x: 0, y: 1, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5502,6 +5502,54 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1420885041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1420885043}
+  - component: {fileID: 1420885042}
+  m_Layer: 0
+  m_Name: Classes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1420885042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420885041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e316d6f11ce3d748b4cde7782a74a69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumOWeapons: 1
+  Weapons: []
+  NumOSpells: 1
+  Spells: []
+--- !u!4 &1420885043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420885041}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.690424, y: -1.3982382, z: 9.140975}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423748059
 GameObject:
   m_ObjectHideFlags: 0
@@ -6964,6 +7012,28 @@ MonoBehaviour:
   - 
   - 
   - 
+  SpellNames:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  SpellInputs:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   spellKeys: 720000007400000066000000670000006300000076000000
 --- !u!114 &1879940552
 MonoBehaviour:
@@ -6995,7 +7065,7 @@ MonoBehaviour:
   CameraPos: {fileID: 425248178}
   OrientationX: {fileID: 597098789}
   OrientationY: {fileID: 820069006}
-  Sensetivity: 200
+  Sensetivity: 500
 --- !u!114 &1879940554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8993,6 +9063,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1420885043}
   - {fileID: 1202410930}
   - {fileID: 1943393246}
   - {fileID: 2094665515}

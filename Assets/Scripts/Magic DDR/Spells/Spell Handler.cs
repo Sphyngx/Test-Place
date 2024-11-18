@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Classes;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,6 +19,7 @@ public class SpellHandler : MonoBehaviour
     public GameObject FireballPrefab;
     [Header("HollowPurple")]
     public GameObject HollowPurplaPrefab;
+    
     private void Start()
     {
         InputHandler = GetComponent<InputHandler>();
