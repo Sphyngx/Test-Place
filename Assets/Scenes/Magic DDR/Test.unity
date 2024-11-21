@@ -5531,10 +5531,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e316d6f11ce3d748b4cde7782a74a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumOWeapons: 1
-  Weapons: []
-  NumOSpells: 1
-  Spells: []
+  Weapons:
+  - Name: Fists
+    Damage: 0
+  - Name: 
+    Damage: 0
+  - Name: 
+    Damage: 0
+  _Keys:
+  - key
+  _Values:
+  - result
+  Spells:
+  - Name: Flare
+    Runes: []
+    Damage: 0
+  - Name: FireBall
+    Runes: []
+    Damage: 0
+  - Name: 
+    Runes: []
+    Damage: 0
 --- !u!4 &1420885043
 Transform:
   m_ObjectHideFlags: 0
