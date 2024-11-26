@@ -35,11 +35,7 @@ public class ClassHandler : MonoBehaviour
         for (int i = 0; i < Spells.Count; i++)
         {
             test.Add(Spells[i].Key, Spells[i]);
-            
+
         }
     }
 }
-
-
-
-
