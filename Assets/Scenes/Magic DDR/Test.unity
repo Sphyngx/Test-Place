@@ -5438,6 +5438,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1223710342}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1398819762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1398819764}
+  - component: {fileID: 1398819763}
+  - component: {fileID: 1398819765}
+  m_Layer: 0
+  m_Name: SpelIdentifier
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1398819763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398819762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ccacaf40ffb795458cf7560f1b59803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1398819764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398819762}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.068731, y: -9.48949, z: 11.950489}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1398819765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398819762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ae1b9055f80134a9ba7522205557e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  identifier: {fileID: 1398819763}
+  acceptingInput: 0
+  savingRune: 0
+  runeInputs: 6100000073000000640000007a0000007800000063000000
 --- !u!1 &1399783624 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2276499822099194725, guid: e8824bc24815e7547bee0c99f284a800, type: 3}
@@ -5538,20 +5599,17 @@ MonoBehaviour:
     Damage: 0
   - Name: 
     Damage: 0
-  _Keys:
-  - key
-  _Values:
-  - result
   Spells:
-  - Name: Flare
+  - Name: TestName
     Runes: []
     Damage: 0
-  - Name: FireBall
+    Key: TestKey
+    Value: TestValue
+  - Name: Fireball
     Runes: []
-    Damage: 0
-  - Name: 
-    Runes: []
-    Damage: 0
+    Damage: 5
+    Key: TTF
+    Value: FireBallRune
 --- !u!4 &1420885043
 Transform:
   m_ObjectHideFlags: 0
@@ -6990,7 +7048,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879940549}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6781ccb90e0ea946a82f6f4a4587d93, type: 3}
   m_Name: 
@@ -7010,7 +7068,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879940549}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9130faff09b50e439c9f0c47f65be87, type: 3}
   m_Name: 
@@ -7029,28 +7087,6 @@ MonoBehaviour:
   - 
   - 
   - 
-  SpellNames:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  SpellInputs:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
   spellKeys: 720000007400000066000000670000006300000076000000
 --- !u!114 &1879940552
 MonoBehaviour:
@@ -7059,7 +7095,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879940549}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a372c8ccfd975d4199eec89797a8e88, type: 3}
   m_Name: 
@@ -7073,7 +7109,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879940549}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73740e6da5d716842b55d7990a46f0a3, type: 3}
   m_Name: 
@@ -7090,7 +7126,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879940549}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2aa617e67d99576499f913895cad39c3, type: 3}
   m_Name: 
@@ -9090,3 +9126,4 @@ SceneRoots:
   - {fileID: 1163265910}
   - {fileID: 3361263064720342792}
   - {fileID: 1879940555}
+  - {fileID: 1398819764}

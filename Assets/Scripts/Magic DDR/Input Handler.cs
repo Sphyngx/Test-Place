@@ -6,7 +6,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
-using Assets.Classes;
 
 public class InputHandler : MonoBehaviour
 {
@@ -23,8 +22,6 @@ public class InputHandler : MonoBehaviour
     int RuneAmount;
     string BrokenRune = "BrokenRune";
     public string[] Runes = new string[6];
-    public string[] SpellNames = new string[0];
-    public string[] SpellInputs = new string[0];
     [Header("Flare")]
     string FlareRune = "FlareRune";
     [Header("Fireball")]
@@ -37,10 +34,6 @@ public class InputHandler : MonoBehaviour
     private void Start()
     {
         SpellHandler = GetComponent<SpellHandler>();
-        for (int i = 0; i < SpellInputs.Length; i++)
-        {
-            Spells spells = new Spells(SpellNames[i], SpellInputs[i]);
-        }
         
         CanCast = true;
     }
