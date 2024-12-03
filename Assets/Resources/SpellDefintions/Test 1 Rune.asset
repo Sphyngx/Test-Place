@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c922b21327fa4354e9fa439a277c3fc0, type: 3}
-  m_Name: Fireball
+  m_Name: Test 1 Rune
   m_EditorClassIdentifier: 
   runes:
-  - RRF
-  - TTR
-  spell: {fileID: 1643765387844707149, guid: eabd8d814f6ba974381eddcd186e4ac0, type: 3}
+  - rrr
+  spell: {fileID: 4428936459240292659, guid: 826c6afd151fda24e89f493e124f1948, type: 3}
