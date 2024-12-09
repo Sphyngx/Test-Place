@@ -27,7 +27,7 @@ public class SpellHandler : MonoBehaviour
     {
         FlareObject = Instantiate(FlarePrefab);
         FlareObject.transform.position = FlarePos.transform.position;
-        InputHandler.FinishCast = false;
+        
     }
     public void Fireball()
     {
@@ -36,7 +36,7 @@ public class SpellHandler : MonoBehaviour
         Rigidbody FireballRigidbody = FireballObject.GetComponent<Rigidbody>();
         FireballObject.transform.position = Player.transform.position + PlayerOrientationX.transform.forward + PlayerOrientationY.transform.forward;
         FireballRigidbody.AddForce(PlayerOrientationX.transform.forward + PlayerOrientationY.transform.forward * 5,ForceMode.Impulse);
-        InputHandler.FinishCast = false;
+        
     }
     public void HollowPurple()
     {

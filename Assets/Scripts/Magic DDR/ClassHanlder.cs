@@ -32,14 +32,10 @@ public class ClassHandler : MonoBehaviour
     Dictionary<string, Spell> test = new Dictionary<string, Spell>();
     void Start()
     {
-        for (int i = 0; i < Spells.Count; i++)
+        //for (int i = 0; i < Spells.Count; i++)
         {
-            test.Add(Spells[i].Key, Spells[i]);
-            
+            //test.Add(Spells[i].Key, Spells[i]);
+
         }
     }
 }
-
-
-
-

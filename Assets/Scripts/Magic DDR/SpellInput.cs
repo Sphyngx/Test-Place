@@ -7,7 +7,7 @@ public class SpellInput : MonoBehaviour
 {
     [SerializeField] SpellIdentifier identifier;
 
-    List<string> confirmedRunes = new List<string>();
+    [SerializeField] List<string> confirmedRunes = new List<string>();
     string currentRune = "";
 
     [SerializeField] bool acceptingInput = false;
@@ -36,17 +36,14 @@ public class SpellInput : MonoBehaviour
             acceptingInput = false;
             return;
         }
-
         if (Input.GetMouseButton(1))
         {
             ClearInput();
         }
-
         if(Input.GetKeyDown(KeyCode.E))
         {
             savingRune = !savingRune;
         }
-
         foreach(KeyCode key in runeInputs)
         {
             if(Input.GetKeyDown(key))
