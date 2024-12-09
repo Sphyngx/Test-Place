@@ -48,6 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb21c2951e56c0479319f375b0ada60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  ManaCost: 0
+  WindUp: 0
+  WindUpStun: 0
   Movable:
     serializedVersion: 2
     m_Bits: 128

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: LightningBolt
   m_EditorClassIdentifier: 
   runes:
-  - 
-  - 
+  - t
+  - f
   spell: {fileID: 1515099519057378692, guid: c80088f0c136d444a831c01b0f4b8a1e, type: 3}

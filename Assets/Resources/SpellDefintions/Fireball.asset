@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   runes:
-  - RRF
-  - TTR
+  - r
+  - t
   spell: {fileID: 1643765387844707149, guid: eabd8d814f6ba974381eddcd186e4ac0, type: 3}

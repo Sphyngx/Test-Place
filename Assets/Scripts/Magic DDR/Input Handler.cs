@@ -59,6 +59,7 @@ public class InputHandler : MonoBehaviour
             if (Search)
             {
                 Debug.Log("Got spell " + Search.name);
+                Instantiate(Search).Player = gameObject;
                 Runes.Clear();
             }
             else
