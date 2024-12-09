@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int ManaCost;
+    public float WindUp;
+    public bool WindUpStun;
+    private void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (WindUpStun)
+        {
+            GetComponent<>
+        }
     }
 }

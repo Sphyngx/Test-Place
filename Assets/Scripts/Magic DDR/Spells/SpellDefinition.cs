@@ -7,4 +7,5 @@ public class SpellDefinition : ScriptableObject
 {
     public string[] runes;
     public Spell spell;
+
 }
