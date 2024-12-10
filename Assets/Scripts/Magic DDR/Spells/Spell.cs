@@ -7,24 +7,12 @@ public class Spell : MonoBehaviour
     public GameObject Player;
     public int ManaCost;
     public float WindUp;
-    public bool WindUpStun;
-    private void Start()
+    void Start()
     {
-        if (WindUpStun)
-        {
-            WASDImproved Movement = Player.GetComponent<WASDImproved>();
-            Movement.enabled = false;
-        }
+        
     }
-    private void Update()
+    void Update()
     {
-        if (WindUpStun)
-        {
-            WindUp -= Time.deltaTime;
-            if (WindUp <= 0)
-            {
-                WindUpStun = false;
-            }
-        }
+        
     }
 }

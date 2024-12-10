@@ -59,7 +59,7 @@ public class InputHandler : MonoBehaviour
             if (Search)
             {
                 Debug.Log("Got spell " + Search.name);
-                Instantiate(Search).Player = gameObject;
+                StartCoroutine(WaitForWindUpStun(Search));
                 Runes.Clear();
             }
             else
@@ -105,6 +105,21 @@ public class InputHandler : MonoBehaviour
         {
             CastTimer = CastTime;
         }
+    }
+    private IEnumerator WaitForWindUpStun(Spell search)
+    {
+        search.Player = gameObject;
+        WASDImproved Movement = search.Player.GetComponent<WASDImproved>();
+        float WindUpReset = search.WindUp;
+        while (search.WindUp > 0)
+        {
+            search.WindUp -= Time.deltaTime;
+            Movement.enabled = false;
+            yield return null; 
+        }
+        Instantiate(search);
+        Movement.enabled = true;
+        search.WindUp = WindUpReset;
     }
     private void Update()
     {

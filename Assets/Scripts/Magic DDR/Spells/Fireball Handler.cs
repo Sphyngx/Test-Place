@@ -10,6 +10,12 @@ public class FireballHandler : Spell
     public LayerMask Movable;
     public LayerMask Damagable;
     public int ExplotionSize = 0;
+    private void Start()
+    {
+        gameObject.transform.position = Player.transform.forward;
+        Rigidbody FireBallRigidBody = gameObject.GetComponent<Rigidbody>();
+        FireBallRigidBody.AddForce(, ForceMode.Impulse);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
