@@ -11,6 +11,7 @@ using UnityEngine.WSA;
 public class InputHandler : MonoBehaviour
 {
     [SerializeField] GameObject PlayerModel;
+    [SerializeField] Transform ThrowPosition;
     [Header("Melee Inputs")]
     [SerializeField] bool Stance;
     [Header("Spell Inputs")]
@@ -38,7 +39,6 @@ public class InputHandler : MonoBehaviour
             }
         }
     }
-
     void SpellInputs()
     {
         if (Input.GetMouseButtonDown(0) && IsCasting)
@@ -59,7 +59,14 @@ public class InputHandler : MonoBehaviour
             if (Search)
             {
                 Debug.Log("Got spell " + Search.name);
-                StartCoroutine(WaitForWindUpStun(Search));
+                if (Search.WindUp > 0)
+                {
+                    StartCoroutine(WaitForWindUpStun(Search));
+                }
+                else
+                {
+                    Instantiate(Search, ThrowPosition.position, ThrowPosition.rotation);
+                }
                 Runes.Clear();
             }
             else
@@ -117,7 +124,7 @@ public class InputHandler : MonoBehaviour
             Movement.enabled = false;
             yield return null; 
         }
-        Instantiate(search);
+        Instantiate(search, ThrowPosition.position, ThrowPosition.rotation);
         Movement.enabled = true;
         search.WindUp = WindUpReset;
     }

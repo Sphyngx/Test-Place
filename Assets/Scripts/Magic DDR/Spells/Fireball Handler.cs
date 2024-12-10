@@ -12,18 +12,19 @@ public class FireballHandler : Spell
     public int ExplotionSize = 0;
     private void Start()
     {
-        gameObject.transform.position = Player.transform.forward;
         Rigidbody FireBallRigidBody = gameObject.GetComponent<Rigidbody>();
-        FireBallRigidBody.AddForce(, ForceMode.Impulse);
+        OrientationX = Player.transform.Find("OrientationY/OrientationX").gameObject;
+        FireBallRigidBody.AddForce(transform.forward * 5, ForceMode.Impulse);
     }
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Fireball Hit:" + collision);
         Destroy(gameObject);
         //Knockback on Movable Objects
         Collider[] HitMovable = Physics.OverlapSphere(gameObject.transform.position, ExplotionSize, Movable);
         for (int i = 0; i < HitMovable.Length; i++)
         {
-
+            
             HitMovable[i].AddComponent<Rigidbody>();
             Rigidbody ObjectRigidbody = HitMovable[i].GetComponent<Rigidbody>();
             ObjectRigidbody.mass = 2;

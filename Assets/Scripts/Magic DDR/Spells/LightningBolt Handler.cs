@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class LightningBoltHandler : Spell
 {
+    RaycastHit LightningBoltRay;
     void Start()
     {
-    
+        
     }
     void Update()
     {
