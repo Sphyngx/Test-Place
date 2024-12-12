@@ -1,43 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    Camera3rd camera3rd;
     GameObject Player;
     Rigidbody PlayerRigidbody;
     public GameObject PlayerModel;
-    
-    public float MaxSpeed;
+    public GameObject Orientation;
+    float MouseX;
+    float MouseY;
+    public float Sensetivity;
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         Player = gameObject;
         PlayerRigidbody = GetComponent<Rigidbody>();
-        camera3rd = FindObjectOfType<Camera3rd>();
     }
     void Update()
     {
+        float mouseInputX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * Sensetivity;
+        float mouseInputY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * Sensetivity;
+
+        MouseY += mouseInputX;
+        MouseX -= mouseInputY;
+        MouseX = Mathf.Clamp(MouseX, -70f, 75f);
+
+        Quaternion rotationX = Quaternion.Euler(MouseX, 0, 0);
+        Quaternion rotationY = Quaternion.Euler(0, MouseY, 0);
+
+        //Orientation.transform.rotation = rotationY * rotationX;
+
         //Make the playermodel face the correct orientation
-        PlayerModel.transform.rotation = camera3rd.OrientationY.transform.rotation * Quaternion.Euler(0,180,0) * Quaternion.Euler(-90,0,0);
-
-        //Cap the Max speed
-        Vector3 velocity = PlayerRigidbody.velocity;
-
-        if (Mathf.Abs(velocity.x) > MaxSpeed)
-        {
-            velocity.x = MaxSpeed * Mathf.Sign(velocity.x);
-        }
-        if (Mathf.Abs(velocity.y) > MaxSpeed)
-        {
-
-            velocity.y = MaxSpeed * Mathf.Sign(velocity.y);
-        }
-        if (Mathf.Abs(velocity.z) > MaxSpeed)
-        {
-
-            velocity.z = MaxSpeed * Mathf.Sign(velocity.z);
-        }
-        PlayerRigidbody.velocity = velocity;
     }
 }

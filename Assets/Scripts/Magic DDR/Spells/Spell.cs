@@ -11,8 +11,7 @@ public class Spell : MonoBehaviour
     public float WindUp;
     void Start()
     {
-        OrientationY = Player.transform.Find("OrientationY").gameObject;
-        OrientationX = Player.transform.Find("OrientationX").gameObject;
+        
     }
     void Update()
     {

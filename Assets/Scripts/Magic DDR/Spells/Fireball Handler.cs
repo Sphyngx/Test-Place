@@ -13,7 +13,6 @@ public class FireballHandler : Spell
     private void Start()
     {
         Rigidbody FireBallRigidBody = gameObject.GetComponent<Rigidbody>();
-        OrientationX = Player.transform.Find("OrientationY/OrientationX").gameObject;
         FireBallRigidBody.AddForce(transform.forward * 5, ForceMode.Impulse);
     }
     private void OnCollisionEnter(Collision collision)

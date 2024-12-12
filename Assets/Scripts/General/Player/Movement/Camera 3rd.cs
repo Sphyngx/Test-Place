@@ -7,10 +7,7 @@ using UnityEngine;
 public class Camera3rd : MonoBehaviour
 {
     public GameObject Camera;
-    public GameObject CameraPos;
-    public GameObject OrientationX;
-    public GameObject OrientationY;
-    Vector3 DefaultPos = new Vector3(1.5f, 1.2f, -4);
+    public GameObject Orientation;
     float MouseX;
     float MouseY;
     public float Sensetivity;
@@ -18,26 +15,20 @@ public class Camera3rd : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        CameraPos.transform.position = DefaultPos;
     }
     void Update()
     {
         float mouseInputX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * Sensetivity;
         float mouseInputY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * Sensetivity;
 
-        
         MouseY += mouseInputX; 
         MouseX -= mouseInputY; 
 
-        
         MouseX = Mathf.Clamp(MouseX, -70f, 75f);
 
-        
         Quaternion rotationX = Quaternion.Euler(MouseX, 0, 0);
         Quaternion rotationY = Quaternion.Euler(0, MouseY, 0);
 
-        
-        OrientationY.transform.localRotation = rotationY; 
-        OrientationX.transform.localRotation = rotationX;  
+        Orientation.transform.rotation = rotationY * rotationX;
     }
 }
