@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,7 +31,7 @@ public class WASDImproved : MonoBehaviour
     }
     void Move()
     {
-        Vector3 Forward = Camera.Orientation.transform.forward * VerticalInput + Camera.Orientation.transform.right * HorizontalInput;
+        Vector3 Forward = Camera.Orientation.transform.forward * VerticalInput + Camera.Orientation.transform.right * HorizontalInput;  
         Rigidbody.AddForce(Forward.normalized * MoveSpeed, ForceMode.Impulse);
     }
 }

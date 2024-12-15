@@ -6,32 +6,35 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     GameObject Player;
-    Rigidbody PlayerRigidbody;
+    public GameObject Camera;
     public GameObject PlayerModel;
     public GameObject Orientation;
-    float MouseX;
-    float MouseY;
-    public float Sensetivity;
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Player = gameObject;
-        PlayerRigidbody = GetComponent<Rigidbody>();
     }
     void Update()
     {
-        float mouseInputX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * Sensetivity;
-        float mouseInputY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * Sensetivity;
 
-        MouseY += mouseInputX;
-        MouseX -= mouseInputY;
-        MouseX = Mathf.Clamp(MouseX, -70f, 75f);
+        Orientation.transform.forward = Camera.transform.forward;
+        Transform OrientationY = Orientation.transform;
+        OrientationY.eulerAngles = new Vector3
+        (
+        0,
+        Orientation.transform.eulerAngles.y,
+        OrientationY.eulerAngles.z
+        );
 
-        Quaternion rotationX = Quaternion.Euler(MouseX, 0, 0);
-        Quaternion rotationY = Quaternion.Euler(0, MouseY, 0);
+        float HorizontalInput = Input.GetAxisRaw("Horizontal");
+        float VerticalInput = Input.GetAxisRaw("Vertical");
+        Vector3 PlayerViewDirection = OrientationY.transform.forward * VerticalInput + OrientationY.transform.right * HorizontalInput;
 
-        //Orientation.transform.rotation = rotationY * rotationX;
-
-        //Make the playermodel face the correct orientation
+        if (PlayerViewDirection != Vector3.zero)
+        {
+            Quaternion TargetRotation = Quaternion.LookRotation(PlayerViewDirection);
+            TargetRotation *= Quaternion.Euler(-90, 180, 0);
+            PlayerModel.transform.rotation = Quaternion.Slerp(PlayerModel.transform.rotation, TargetRotation, Time.deltaTime * 10);
+        }
     }
 }
