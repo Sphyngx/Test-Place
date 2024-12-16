@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
 
-public class LightningBoltHandler : Spell
+public class LightningBoltScript : Spell
 {
     
     void Start()

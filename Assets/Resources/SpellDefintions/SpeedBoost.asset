@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c922b21327fa4354e9fa439a277c3fc0, type: 3}
+  m_Name: SpeedBoost
+  m_EditorClassIdentifier: 
+  runes:
+  - cf
+  spell: {fileID: 4041531997232147303, guid: 7dddb0ec86000664e8a34be41862dea3, type: 3}

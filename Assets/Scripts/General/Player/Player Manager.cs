@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject Camera;
     public GameObject PlayerModel;
     public GameObject Orientation;
+    public Transform OrientationY;
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -18,7 +19,7 @@ public class PlayerManager : MonoBehaviour
     {
 
         Orientation.transform.forward = Camera.transform.forward;
-        Transform OrientationY = Orientation.transform;
+        OrientationY = Orientation.transform;
         OrientationY.eulerAngles = new Vector3
         (
         0,

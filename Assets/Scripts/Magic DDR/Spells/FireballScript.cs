@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FireballHandler : Spell
+public class FireballScript : Spell
 {
     Destructionhandler Destructionhandler;
     public LayerMask Movable;

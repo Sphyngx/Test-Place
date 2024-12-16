@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WASD3rd : MonoBehaviour
 {
+    public PlayerManager PlayerManager;
     GameObject Player;
     public CharacterController PlayerController;
     public float Speed;
@@ -12,6 +13,7 @@ public class WASD3rd : MonoBehaviour
     void Start()
     {
         Player = gameObject;
+        PlayerManager = Player.GetComponent<PlayerManager>();
     }
     private void Update()
     {
@@ -30,9 +32,7 @@ public class WASD3rd : MonoBehaviour
     }
     void Move()
     {
-        
-        
-            PlayerController.SimpleMove(new Vector3(HorizontalInput * Speed, VerticalInput * Speed));
-        
+        Vector3 MoveDirection = PlayerManager.OrientationY.forward * VerticalInput + PlayerManager.OrientationY.right * HorizontalInput;
+        PlayerController.SimpleMove(new Vector3(MoveDirection.normalized.x * Speed, 0 , MoveDirection.normalized.z * Speed));
     }
 }
