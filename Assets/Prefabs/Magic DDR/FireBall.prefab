@@ -48,10 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb21c2951e56c0479319f375b0ada60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerManager: {fileID: 0}
   Player: {fileID: 0}
   OrientationX: {fileID: 0}
   OrientationY: {fileID: 0}
-  ManaCost: 0
+  ManaCost: 50
+  Damage: 0
   WindUp: 0
   Movable:
     serializedVersion: 2

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpeedBoostScript : Spell
 {
-    GameObject Player;
     WASD3rd WASD;
     bool Boosted = false;
     [SerializeField] float Timer;

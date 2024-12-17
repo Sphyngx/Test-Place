@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -5,19 +6,41 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    GameObject Player;
-    public GameObject Camera;
-    public GameObject PlayerModel;
-    public GameObject Orientation;
-    public Transform OrientationY;
+    [Header("Health")]
+    public float HP;
+    public float MaxHP;
+    public float HPRegenMultiplier;
+    [Header("Mana")]
+    public float MP;
+    public float MaxMP;
+    public float MPRegenMultiplier;
+
+
+    [NonSerialized] public GameObject Camera;
+    GameObject PlayerModel;
+    [NonSerialized] public GameObject Orientation;
+    [NonSerialized] public Transform OrientationY;
     private void Start()
     {
+        Camera = GameObject.FindGameObjectWithTag("Camera");
+        PlayerModel = GameObject.FindGameObjectWithTag("PlayerModel");
+        for(int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Transform child = gameObject.transform.GetChild(i);
+            if (child.name.Contains("Orientation"))
+            {
+                Orientation = child.gameObject;
+            }
+        }
+
+        if(Orientation == null)
+        {
+            Debug.LogWarning("No orientation on player :(");
+        }
         Cursor.lockState = CursorLockMode.Locked;
-        Player = gameObject;
     }
     void Update()
     {
-
         Orientation.transform.forward = Camera.transform.forward;
         OrientationY = Orientation.transform;
         OrientationY.eulerAngles = new Vector3
@@ -36,6 +59,13 @@ public class PlayerManager : MonoBehaviour
             Quaternion TargetRotation = Quaternion.LookRotation(PlayerViewDirection);
             TargetRotation *= Quaternion.Euler(-90, 180, 0);
             PlayerModel.transform.rotation = Quaternion.Slerp(PlayerModel.transform.rotation, TargetRotation, Time.deltaTime * 10);
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (MP < MaxMP)
+        {
+            MP += Time.deltaTime * MPRegenMultiplier;
         }
     }
 }

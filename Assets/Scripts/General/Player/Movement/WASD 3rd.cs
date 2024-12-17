@@ -28,7 +28,6 @@ public class WASD3rd : MonoBehaviour
     {
         HorizontalInput = Input.GetAxisRaw("Horizontal");
         VerticalInput = Input.GetAxisRaw("Vertical");
-
     }
     void Move()
     {

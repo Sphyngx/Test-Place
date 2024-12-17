@@ -29,7 +29,6 @@ public class Inputs : MonoBehaviour
     void TarrotMenu()
     {
         View.GetComponent<LockedCamera>().enabled = false;
-        Player.GetComponent<WASDImproved>().enabled = false;
         View.transform.position = TarrotM.transform.position;
         View.transform.rotation = TarrotM.transform.rotation;
         UnityEngine.Cursor.lockState = CursorLockMode.Confined;
@@ -37,7 +36,7 @@ public class Inputs : MonoBehaviour
     private void TarrotMenuClose()
     {
         View.GetComponent<LockedCamera>().enabled = true;
-        Player.GetComponent<WASDImproved>().enabled = true;
+        
     }
 }
 

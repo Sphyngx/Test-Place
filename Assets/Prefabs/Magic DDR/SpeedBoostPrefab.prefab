@@ -44,10 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227470e1bb89e8a429290d34f6404faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerManager: {fileID: 0}
   Player: {fileID: 0}
   OrientationX: {fileID: 0}
   OrientationY: {fileID: 0}
-  ManaCost: 0
+  ManaCost: 50
+  Damage: 0
   WindUp: 0
-  Timer: 2
-  SpeedBoost: 5
+  Timer: 27.8
+  SpeedBoost: 10

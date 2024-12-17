@@ -10,6 +10,7 @@ using UnityEngine.WSA;
 
 public class InputHandler : MonoBehaviour
 {
+    [SerializeField] PlayerManager playerManager;
     [SerializeField] GameObject PlayerModel;
     [SerializeField] Transform ThrowPosition;
     [Header("Melee Inputs")]
@@ -29,7 +30,7 @@ public class InputHandler : MonoBehaviour
         {
             Stance = !Stance;
         }
-        if (Input.GetMouseButtonDown(0) && Stance)
+        if (Input.GetMouseButtonDown(0) && Stance && !IsCasting)
         {
             //m1
             Collider[] hitbox = Physics.OverlapBox(PlayerModel.transform.position + PlayerModel.transform.up * 3 - new Vector3(0, 1f), new Vector3(5,5,5));
@@ -65,7 +66,8 @@ public class InputHandler : MonoBehaviour
                 }
                 else
                 {
-                    Instantiate(Search, ThrowPosition.position, ThrowPosition.rotation);
+                    Spell CastedSpell = Instantiate(Search, ThrowPosition.position, ThrowPosition.rotation);
+                    CastedSpell.PlayerManager = playerManager;
                 }
                 Runes.Clear();
             }
@@ -113,20 +115,18 @@ public class InputHandler : MonoBehaviour
             CastTimer = CastTime;
         }
     }
-    private IEnumerator WaitForWindUpStun(Spell search)
+    private IEnumerator WaitForWindUpStun(Spell Search)
     {
-        search.Player = gameObject;
-        WASDImproved Movement = search.Player.GetComponent<WASDImproved>();
-        float WindUpReset = search.WindUp;
-        while (search.WindUp > 0)
+        Search.Player = gameObject;
+        float WindUpReset = Search.WindUp;
+        while (Search.WindUp > 0)
         {
-            search.WindUp -= Time.deltaTime;
-            Movement.enabled = false;
+            Search.WindUp -= Time.deltaTime;
             yield return null; 
         }
-        Instantiate(search, ThrowPosition.position, ThrowPosition.rotation);
-        Movement.enabled = true;
-        search.WindUp = WindUpReset;
+        Spell CastedSpell = Instantiate(Search, ThrowPosition.position, ThrowPosition.rotation);
+        CastedSpell.PlayerManager = playerManager;
+        Search.WindUp = WindUpReset;
     }
     private void Update()
     {
