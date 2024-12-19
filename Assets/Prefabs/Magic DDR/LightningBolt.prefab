@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8726e5b44749ab34d9251683559da520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerManager: {fileID: 0}
   Player: {fileID: 0}
-  ManaCost: 0
+  ManaCost: 50
+  Damage: 0
   WindUp: 2
-  WindUpStun: 1
 --- !u!1 &2456686331277783036
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WASD3rd : MonoBehaviour
 {
-    public PlayerManager PlayerManager;
+    PlayerManager PlayerManager;
     GameObject Player;
     public CharacterController PlayerController;
     public float Speed;

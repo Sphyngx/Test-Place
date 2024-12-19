@@ -6397,7 +6397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9130faff09b50e439c9f0c47f65be87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerManager: {fileID: 1879940554}
+  PlayerManager: {fileID: 1879940554}
   PlayerModel: {fileID: 2088470738}
   ThrowPosition: {fileID: 898629525}
   Stance: 0
@@ -6424,7 +6424,7 @@ MonoBehaviour:
   HP: 0
   MaxHP: 100
   HPRegenMultiplier: 0
-  MP: 0
+  MP: 100
   MaxMP: 100
   MPRegenMultiplier: 10
 --- !u!4 &1879940555
@@ -6482,7 +6482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703183cce99fcda49ae8dc9a8f586510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerManager: {fileID: 0}
   PlayerController: {fileID: 1879940557}
   Speed: 10
 --- !u!1 &1889716724

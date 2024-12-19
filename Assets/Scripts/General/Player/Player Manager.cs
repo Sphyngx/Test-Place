@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
     public float MaxMP;
     public float MPRegenMultiplier;
 
+    [NonSerialized] public Spell SpellUsed;
 
     [NonSerialized] public GameObject Camera;
     GameObject PlayerModel;
@@ -41,6 +42,39 @@ public class PlayerManager : MonoBehaviour
     }
     void Update()
     {
+
+
+        if (SpellUsed != null)
+        {
+            if (!SpellUsed.ManaDrain)
+            {
+                if (MP >= SpellUsed.ManaCost)
+                {
+                    MP -= SpellUsed.ManaCost;
+                    SpellUsed = null;
+                }
+                else
+                {
+                    SpellUsed = null;
+                    Debug.Log("Not enough mana");
+                }
+            }
+        }
+        else if (SpellUsed != null && SpellUsed.gameObject != null)
+        {
+            if (SpellUsed.ManaDrain)
+            {
+                if (MP >= Time.deltaTime * SpellUsed.ManaDrainMultiplier)
+                {
+                    MP -= Time.deltaTime * SpellUsed.ManaDrainMultiplier;
+                }
+                else
+                {
+                    SpellUsed = null;
+                    Debug.Log("Not enough mana");
+                }
+            }
+        }
         Orientation.transform.forward = Camera.transform.forward;
         OrientationY = Orientation.transform;
         OrientationY.eulerAngles = new Vector3

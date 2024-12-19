@@ -10,7 +10,7 @@ using UnityEngine.WSA;
 
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField] PlayerManager playerManager;
+    [SerializeField] PlayerManager PlayerManager;
     [SerializeField] GameObject PlayerModel;
     [SerializeField] Transform ThrowPosition;
     [Header("Melee Inputs")]
@@ -57,17 +57,17 @@ public class InputHandler : MonoBehaviour
         {
             //Fire-spell
             Spell Search = identifier.FindSpell(Runes.ToArray());
+            PlayerManager.SpellUsed = Search;
             if (Search)
             {
                 Debug.Log("Got spell " + Search.name);
-                if (Search.WindUp > 0)
+                if (Search.WindUp > 0 && PlayerManager.MP > Search.ManaCost)
                 {
                     StartCoroutine(WaitForWindUpStun(Search));
                 }
-                else
+                else if (Search.WindUp == 0 && PlayerManager.MP > Search.ManaCost)
                 {
-                    Spell CastedSpell = Instantiate(Search, ThrowPosition.position, ThrowPosition.rotation);
-                    CastedSpell.PlayerManager = playerManager;
+                    Instantiate(Search, ThrowPosition.position, ThrowPosition.rotation);
                 }
                 Runes.Clear();
             }
@@ -118,6 +118,7 @@ public class InputHandler : MonoBehaviour
     private IEnumerator WaitForWindUpStun(Spell Search)
     {
         Search.Player = gameObject;
+        PlayerManager.SpellUsed = Search;
         float WindUpReset = Search.WindUp;
         while (Search.WindUp > 0)
         {
@@ -125,7 +126,6 @@ public class InputHandler : MonoBehaviour
             yield return null; 
         }
         Spell CastedSpell = Instantiate(Search, ThrowPosition.position, ThrowPosition.rotation);
-        CastedSpell.PlayerManager = playerManager;
         Search.WindUp = WindUpReset;
     }
     private void Update()

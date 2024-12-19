@@ -46,10 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerManager: {fileID: 0}
   Player: {fileID: 0}
-  OrientationX: {fileID: 0}
-  OrientationY: {fileID: 0}
-  ManaCost: 50
+  ManaCost: 0
+  ManaDrainMultiplier: 11.49
   Damage: 0
   WindUp: 0
-  Timer: 27.8
+  ManaDrain: 1
+  Timer: 5
   SpeedBoost: 10

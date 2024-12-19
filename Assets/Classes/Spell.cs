@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
+    [Header("Class Inherited")]
     public PlayerManager PlayerManager;
     public GameObject Player;
-    public GameObject OrientationX;
-    public GameObject OrientationY;
     public float ManaCost;
+    public float ManaDrainMultiplier;
     public float Damage;
     public float WindUp;
+    public bool ManaDrain;
+    
+
     void Start()
     {
-        PlayerManager.MP -= ManaCost;
+        
     }
     void Update()
     {
