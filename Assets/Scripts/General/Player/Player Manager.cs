@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -42,37 +43,30 @@ public class PlayerManager : MonoBehaviour
     }
     void Update()
     {
-
-
-        if (SpellUsed != null)
+        if (SpellUsed != null && !SpellUsed.ManaDrain)
         {
-            if (!SpellUsed.ManaDrain)
+            if (MP >= SpellUsed.ManaCost)
             {
-                if (MP >= SpellUsed.ManaCost)
-                {
-                    MP -= SpellUsed.ManaCost;
-                    SpellUsed = null;
-                }
-                else
-                {
-                    SpellUsed = null;
-                    Debug.Log("Not enough mana");
-                }
+                MP -= SpellUsed.ManaCost;
+                SpellUsed = null;
+            }
+            else
+            {
+                SpellUsed = null;
+                Debug.Log("Not enough mana");
             }
         }
-        else if (SpellUsed != null && SpellUsed.gameObject != null)
+        else if (SpellUsed != null && SpellUsed.ManaDrain)
         {
-            if (SpellUsed.ManaDrain)
+            if (MP >= Time.deltaTime * SpellUsed.ManaDrainMultiplier && SpellUsed.gameObject != null)
             {
-                if (MP >= Time.deltaTime * SpellUsed.ManaDrainMultiplier)
-                {
-                    MP -= Time.deltaTime * SpellUsed.ManaDrainMultiplier;
-                }
-                else
-                {
-                    SpellUsed = null;
-                    Debug.Log("Not enough mana");
-                }
+                Debug.Log("drain test: " + SpellUsed.gameObject);
+                MP -= Time.deltaTime * SpellUsed.ManaDrainMultiplier;
+            }
+            else
+            {
+                SpellUsed = null;
+                Debug.Log("Not enough mana");
             }
         }
         Orientation.transform.forward = Camera.transform.forward;

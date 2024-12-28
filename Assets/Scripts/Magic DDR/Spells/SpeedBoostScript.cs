@@ -5,27 +5,27 @@ using UnityEngine;
 public class SpeedBoostScript : Spell
 {
     WASD3rd WASD;
-    bool Boosted = false;
-    [SerializeField] float Timer;
+    
+    bool Used = false;
+    [SerializeField] float LifeSpan;
     [SerializeField] float SpeedBoost;
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
         WASD = Player.GetComponent<WASD3rd>();
     }
     void Update()
     {
         
-        if (!Boosted)
+        if (!Used)
         {
             WASD.Speed += SpeedBoost;
-            Boosted = true;
+            Used = true;
         }
         else
         {
-            Timer -= Time.deltaTime;
+            LifeSpan -= Time.deltaTime;
         }
-        if (Timer <= 0)
+        if (LifeSpan <= 0)
         {
             WASD.Speed -= SpeedBoost;
             Destroy(gameObject);

@@ -47,9 +47,9 @@ MonoBehaviour:
   PlayerManager: {fileID: 0}
   Player: {fileID: 0}
   ManaCost: 0
-  ManaDrainMultiplier: 11.49
+  ManaDrainMultiplier: 10
   Damage: 0
   WindUp: 0
   ManaDrain: 1
-  Timer: 5
+  LifeSpan: 2
   SpeedBoost: 10
